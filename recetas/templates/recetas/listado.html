@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Recetario | Listado</title>
+
+    <!-- FICHEROS CSS (ESTILOS) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- BEGIN: Cabecera -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="text-center">
+                    <h1>Mis Recetas</h1>
+                    <p>Buen Provecho</p>
+                </div>
+            </div>
+        </div>
+        <!-- END: Cabecera -->
+
+        <!-- BEGIN: boton volver y añadir-->
+        <div class="d-flex flex justify-content-between mb-2">
+            <a href="{% url 'recetas:index' %}" class="btn btn-secondary btn-sm">Volver</a>
+            <a href="{% url 'recetas:create' %}" class="btn btn-primary btn-sm">Añadir</a>
+        </div>
+        <!-- END: boton volver y añadir-->
+
+        <div class="row">
+            <!-- BEGIN: Tabla -->
+            <div class="col-md-12">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped ">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th class="text-center">Título</th>
+                                <th class="text-center">Dificultad</th>
+                                <th class="text-center">Categoría</th>
+                                <th class="text-end text-nowrap"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for receta in recetas %}
+                            <tr>
+                                <th>{{ receta.id }}</th>
+                                <td>{{ receta.titulo }}</td>
+                                <td>{{ receta.dificultad }}</td>
+                                <td>{{ receta.categoria.nombre }}</td>
+                                <td class="text-end text-nowrap">
+                                    <a href="{% url 'recetas:read' receta.id %}" class="btn btn-info btn-sm">Ver</a>
+                                    <a href="{% url 'recetas:update' receta.id %}" class="btn btn-warning btn-sm">Modificar</a>
+                                    <a href="{% url 'recetas:delete' receta.id %}"  class="btn btn-danger btn-sm">Borrar</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                   
+                </div>
+            </div>
+            <!-- END: Tabla -->
+        </div> <!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <!-- FICHEROS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
