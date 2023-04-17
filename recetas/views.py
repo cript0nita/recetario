@@ -18,12 +18,16 @@ def index(request):
     return render(request, 'recetas/index.html', context)
 
 
-def listado(request, cat_id):
+def listado(request, cat_id=None):
     """
     - LISTADO
-    Listo todas las recetas filtradas por la categoria id recibida por parametro (cat_id)
+    Listo todas las recetas, si se pasa el parametro (cat_id) se filtraran por la categoria id recibida
+
     """
-    recetas = Receta.objects.filter(categoria_id=cat_id)
+    if cat_id is not None:
+        recetas = Receta.objects.filter(categoria_id=cat_id)
+    else:
+        recetas = Receta.objects.all()
 
     context = {
         'recetas': recetas
