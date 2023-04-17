@@ -5,6 +5,7 @@ from . import views
 app_name = "recetas"
 urlpatterns = [
     path('', views.index, name='index'),
+    path('listado/', views.listado, name='listado'),
     path('listado/<cat_id>', views.listado, name='listado'),
 
     # CRUD RECETAS
